@@ -8,12 +8,15 @@
     "start": "next start",
     "lint": "eslint",
     "open-browser": "start http://localhost:3000"
-    },
+  },
   "dependencies": {
+    "@arcjet/next": "^1.0.0-beta.10",
     "@clerk/nextjs": "^6.31.4",
+    "@t3-oss/env-nextjs": "^0.13.8",
     "next": "15.5.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "zod": "^4.1.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
