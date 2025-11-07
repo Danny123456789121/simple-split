@@ -1,10 +1,11 @@
 import eslint from '@eslint/js';
+import { globalIgnores } from 'eslint/config';
 import json from 'eslint-plugin-json';
 import eslintPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 
 const reactConfig = {
   plugins: {
@@ -48,7 +49,7 @@ const simpleImportSortConfig = {
 };
 
 const reactHooksConfig = {
-  files: ['/.ts', '/.tsx'],
+  files: ['**/*.ts', '**/*.tsx'],
   settings: {
     react: {
       version: 'detect',
@@ -64,14 +65,7 @@ const reactHooksConfig = {
 };
 
 export default tseslint.config(
-  globalIgnores([
-    '/node_modules/',
-    '.git/',
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
-  ]),
+  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
   reactConfig,
   simpleImportSortConfig,
   reactHooksConfig,

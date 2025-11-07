@@ -6,15 +6,23 @@
     "dev": "npm run open-browser & next dev",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "eslint": "eslint --max-warnings 0 --no-warn-ignored --format stylish --color && echo ESLint: OK || (echo ESLint: FAIL && exit 1)",
+    "eslint:fix": "eslint --fix && echo ESLint: OK || (echo ESLint: FAIL && exit 1)",
+    "prettier": "prettier --check --log-level warn 'src/**/*.{ts,tsx,js,jsx,json,md}' && echo Prettier: OK || (echo Prettier: FAIL && exit 1)",
+    "prettier:fix": "prettier --write 'src/**/*.{ts,tsx,js,jsx,json,md}' && echo Prettier: OK || (echo Prettier: FAIL && exit 1)",
+    "typecheck": "tsc --noEmit && echo Typecheck: OK || (echo Typecheck: FAIL && exit 1)",
+    "lint": "concurrently -n ESLint,Prettier,Typecheck -c yellow,magenta,cyan \"npm:eslint\" \"npm:prettier\" \"npm:typecheck\"",
+    "lint:fix": "concurrently -n ESLint,Prettier,Typecheck -c yellow,magenta,cyan \"npm:eslint:fix\" \"npm:prettier:fix\" \"npm:typecheck\"",
     "open-browser": "start http://localhost:3000"
   },
   "dependencies": {
+    "@arcjet/next": "^1.0.0-beta.14",
     "@clerk/nextjs": "^6.31.4",
+    "@t3-oss/env-nextjs": "^0.13.8",
     "next": "15.5.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -25,6 +33,7 @@
     "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.46.1",
     "@typescript-eslint/parser": "^8.46.1",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
     "eslint-config-next": "^15.5.0",
     "eslint-config-prettier": "^10.1.8",
