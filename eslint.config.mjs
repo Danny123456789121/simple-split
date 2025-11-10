@@ -1,3 +1,4 @@
+import importAlias from '@dword-design/eslint-plugin-import-alias';
 import eslint from '@eslint/js';
 import { globalIgnores } from 'eslint/config';
 import json from 'eslint-plugin-json';
@@ -37,12 +38,7 @@ const simpleImportSortConfig = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: [
-          {
-            group: ['src/*'],
-            message: 'please use relative imports.',
-          },
-        ],
+        patterns: [],
       },
     ],
   },
@@ -71,6 +67,7 @@ export default tseslint.config(
   reactHooksConfig,
   eslint.configs.recommended,
   eslintPrettierRecommended,
+  importAlias.configs.recommended,
   json.configs.recommended,
   tseslint.configs.recommended,
   tseslint.configs.stylistic,
@@ -82,6 +79,14 @@ export default tseslint.config(
     },
     rules: {
       '@typescript-eslint/array-type': ['error', { default: 'generic' }],
+      '@dword-design/import-alias/prefer-alias': [
+        'error',
+        {
+          alias: {
+            '@': './src',
+          },
+        },
+      ],
       'newline-before-return': 'error',
       curly: ['error', 'all'],
     },
