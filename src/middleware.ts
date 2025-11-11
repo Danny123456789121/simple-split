@@ -5,7 +5,7 @@ import { env } from './data/env/server';
 
 const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/']);
 
-arcjet({
+const aj = arcjet({
   key: env.ARCJET_KEY!,
   rules: [
     shield({ mode: 'LIVE' }),
@@ -22,6 +22,10 @@ arcjet({
 });
 
 export default clerkMiddleware(async (auth, req) => {
+  const decision = await aj.protect(req);
+  if (decision.isDenied()) {
+    return Response.json({ error: 'Forbidden' }, { status: 403 });
+  }
   if (!isPublicRoute(req)) {
     await auth.protect();
   }
