@@ -1,0 +1,236 @@
+.shell {
+  display: grid;
+  align-content: center;
+  gap: 1.5rem;
+  min-height: 100vh;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.heroCard,
+.panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--surface-border);
+  border-radius: 28px;
+  background: var(--surface);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.heroCard {
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.heroCard::after {
+  content: '';
+  position: absolute;
+  inset: auto -8rem -8rem auto;
+  width: 16rem;
+  height: 16rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 93, 57, 0.22), transparent 70%);
+  pointer-events: none;
+}
+
+.heroHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(27, 94, 111, 0.1);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.panel {
+  align-self: end;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.summaryPanel {
+  align-self: stretch;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--accent-strong);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.heroCard h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: clamp(2.8rem, 8vw, 5.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  max-width: 10ch;
+}
+
+.panel h2,
+.heroCard h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.lede {
+  max-width: 56ch;
+  margin-top: 0;
+  margin-bottom: 1.75rem;
+  color: rgba(23, 32, 51, 0.8);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+  color: inherit;
+  text-decoration: none;
+}
+
+.primaryButton {
+  color: white;
+  background: var(--accent-strong);
+  box-shadow: 0 16px 30px rgba(27, 94, 111, 0.28);
+}
+
+.secondaryButton {
+  border: 1px solid var(--surface-border);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.primaryButton:hover,
+.secondaryButton:hover {
+  transform: translateY(-1px);
+}
+
+.statsGrid,
+.contentGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.statsGrid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  margin-top: 2rem;
+}
+
+.statsGrid article {
+  padding: 1rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.statsGrid strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1.7rem;
+  letter-spacing: -0.04em;
+}
+
+.statsGrid span,
+.featureCard p,
+.summaryPanel p,
+.storyPanel li {
+  color: rgba(23, 32, 51, 0.8);
+  line-height: 1.6;
+}
+
+.summaryPanel p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.summaryPanel ul,
+.storyPanel ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.summaryPanel ul {
+  color: rgba(23, 32, 51, 0.82);
+  line-height: 1.5;
+}
+
+.contentGrid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.featureCard {
+  padding: 1.5rem;
+}
+
+.featureCard h2 {
+  margin-bottom: 0.75rem;
+}
+
+.cardKicker {
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.storyPanel {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.storyPanel h2 {
+  margin-bottom: 1rem;
+}
+
+.storyPanel li {
+  padding-left: 0.15rem;
+}
+
+@media (max-width: 720px) {
+  .heroHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .shell {
+    gap: 1rem;
+  }
+}

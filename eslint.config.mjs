@@ -60,11 +60,38 @@ const reactHooksConfig = {
   },
 };
 
+const cssModulesEnforcementConfig = {
+  files: ['**/*.ts', '**/*.tsx'],
+  rules: {
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [
+          {
+            group: ['**/*.css', '!**/*.module.css'],
+            message:
+              'Use CSS Modules (.module.css) for component styles. Only src/main.tsx should import global CSS.',
+          },
+        ],
+      },
+    ],
+  },
+};
+
+const cssModulesMainEntryExceptionConfig = {
+  files: ['src/main.tsx'],
+  rules: {
+    'no-restricted-imports': 'off',
+  },
+};
+
 export default tseslint.config(
-  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
+  globalIgnores(['build/**', 'dist/**', 'vite-env.d.ts']),
   reactConfig,
   simpleImportSortConfig,
   reactHooksConfig,
+  cssModulesEnforcementConfig,
+  cssModulesMainEntryExceptionConfig,
   eslint.configs.recommended,
   eslintPrettierRecommended,
   importAlias.configs.recommended,
