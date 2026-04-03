@@ -24,57 +24,69 @@ const steps = [
   'Review the running balance and settle up when ready.',
 ];
 
+const copy = {
+  brand: 'Simple Split',
+  status: 'React frontend',
+  headline: 'Split expenses without the app feeling heavy.',
+  lede: 'Simple Split is a focused landing page for a shared-expenses product. It gives you a polished starting point in React, with no Next.js app router, server middleware, or framework baggage.',
+  primaryCta: 'Explore features',
+  secondaryCta: 'How it works',
+  stats: [
+    { value: '3x', label: 'faster to scan balances' },
+    { value: '0', label: 'server components required' },
+    { value: '1', label: 'clean React entry point' },
+  ],
+  summaryTitle: 'Why this landing page works',
+  summaryBody:
+    'The visual direction is intentionally warm and editorial, so the page feels like a product intro instead of a generic starter template.',
+  summaryPoints: [
+    'Soft glass panels over a warm background.',
+    'Clear hierarchy with a strong primary CTA.',
+    'Responsive layout that stacks naturally on mobile.',
+  ],
+  featureKicker: 'Feature',
+  stepsEyebrow: 'How it works',
+  stepsTitle: 'Keep the flow simple',
+};
+
 export default function App() {
   return (
     <main className={styles.shell}>
       <section className={styles.heroCard}>
         <header className={styles.heroHeader}>
-          <p className={styles.eyebrow}>Simple Split</p>
-          <span className={styles.statusPill}>React frontend</span>
+          <p className={styles.eyebrow}>{copy.brand}</p>
+          <span className={styles.statusPill}>{copy.status}</span>
         </header>
 
-        <h1>Split expenses without the app feeling heavy.</h1>
-        <p className={styles.lede}>
-          Simple Split is a focused landing page for a shared-expenses product.
-          It gives you a polished starting point in React, with no Next.js app
-          router, server middleware, or framework baggage.
-        </p>
+        <h1>{copy.headline}</h1>
+        <p className={styles.lede}>{copy.lede}</p>
 
         <div className={styles.actions}>
           <a className={styles.primaryButton} href="#features">
-            Explore features
+            {copy.primaryCta}
           </a>
           <a className={styles.secondaryButton} href="#how-it-works">
-            How it works
+            {copy.secondaryCta}
           </a>
         </div>
 
         <div className={styles.statsGrid}>
-          <article>
-            <strong>3x</strong>
-            <span>faster to scan balances</span>
-          </article>
-          <article>
-            <strong>0</strong>
-            <span>server components required</span>
-          </article>
-          <article>
-            <strong>1</strong>
-            <span>clean React entry point</span>
-          </article>
+          {copy.stats.map((stat) => (
+            <article key={stat.label}>
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </article>
+          ))}
         </div>
       </section>
 
       <aside className={`${styles.panel} ${styles.summaryPanel}`}>
-        <h2>Why this landing page works</h2>
-        <p>
-          The visual direction is intentionally warm and editorial, so the page
-          feels like a product intro instead of a generic starter template.
-        </p>
+        <h2>{copy.summaryTitle}</h2>
+        <p>{copy.summaryBody}</p>
         <ul>
-          <li>Soft glass panels over a warm background.</li>
-          <li>Clear hierarchy with a strong primary CTA.</li>
-          <li>Responsive layout that stacks naturally on mobile.</li>
+          {copy.summaryPoints.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
         </ul>
       </aside>
 
@@ -84,16 +96,19 @@ export default function App() {
             className={`${styles.panel} ${styles.featureCard}`}
             key={feature.title}
           >
-            <p className={styles.cardKicker}>Feature</p>
+            <p className={styles.cardKicker}>{copy.featureKicker}</p>
             <h2>{feature.title}</h2>
             <p>{feature.description}</p>
           </article>
         ))}
       </section>
 
-      <section className={`${styles.panel} ${styles.storyPanel}`} id="how-it-works">
-        <p className={styles.eyebrow}>How it works</p>
-        <h2>Keep the flow simple</h2>
+      <section
+        className={`${styles.panel} ${styles.storyPanel}`}
+        id="how-it-works"
+      >
+        <p className={styles.eyebrow}>{copy.stepsEyebrow}</p>
+        <h2>{copy.stepsTitle}</h2>
         <ol>
           {steps.map((step) => (
             <li key={step}>{step}</li>
